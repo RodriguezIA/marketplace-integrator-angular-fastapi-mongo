@@ -1,4 +1,4 @@
-from fastapi import Router
+from fastapi import FastAPI
 
 router = Router(
     prefix = "/items"

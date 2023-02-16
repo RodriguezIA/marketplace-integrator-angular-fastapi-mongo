@@ -1,0 +1,30 @@
+<div class="flex flex-auto p-6 sm:p-10">
+    <!-- Main -->
+    <div
+        class="flex flex-col sm:flex-row justify-between w-full sm:max-w-none"
+    >
+        <!-- CONTENT GOES HERE -->
+        <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 sm:mt-10"
+        >
+            <fuse-card
+                class="flex flex-col px-8 py-6 pb-4"
+                *ngFor="let course of courses"
+                #fuseCard
+            >
+                <div class="text-lg font-bold">{{ course.title }}</div>
+                <div class="m-auto">
+                    {{ course.description }}
+                </div>
+                <div class="ml-auto mt-9">
+                    <button mat-flat-button extended color="accent">
+                        Continuar
+                        <mat-icon
+                            svgIcon="heroicons_outline:chevron-right"
+                        ></mat-icon>
+                    </button>
+                </div>
+            </fuse-card>
+        </div>
+    </div>
+</div>

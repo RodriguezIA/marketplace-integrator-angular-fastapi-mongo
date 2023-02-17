@@ -12,6 +12,10 @@ const routes: Route[] = [
   {
       path     : '',
       component: CoursesComponent
+  },
+  {
+    path: 'course/:id',
+    component: CourseComponent
   }
 ];
 

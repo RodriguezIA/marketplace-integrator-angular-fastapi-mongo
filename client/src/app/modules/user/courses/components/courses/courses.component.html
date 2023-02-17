@@ -17,7 +17,7 @@
                     {{ course.description }}
                 </div>
                 <div class="ml-auto mt-9">
-                    <button mat-flat-button extended color="accent">
+                    <button mat-flat-button extended color="accent" [routerLink]="['course', course.id]">
                         Continuar
                         <mat-icon
                             svgIcon="heroicons_outline:chevron-right"

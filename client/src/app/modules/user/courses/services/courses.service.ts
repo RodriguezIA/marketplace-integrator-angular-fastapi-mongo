@@ -1,52 +1,37 @@
 import { Course } from './../interfaces/courses.interface';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { HttpClient } from '@angular/common/http';
+import { tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoursesService {
 
-  private coursesDummy: Course[] = [
-    {
-      id: 0,
-      title: 'Basics of Angular',
-      description: 'Introductory course for Angular and framework basics'
-    },
-    {
-      id: 1,
-      title: 'Basics of TypeScript',
-      description: 'Beginner course for Typescript and its basics'
-    },
-    {
-      id: 2,
-      title: 'Android N: Quick Settings',
-      description: 'Step by step guide for Android N: Quick Settings'
-    },
-    {
-      id: 3,
-      title: 'Build an App for the Google Assistant with Firebase',
-      description: 'Dive deep into Google Assistant apps using Firebase'
-    },
-    {
-      id: 4,
-      title: 'Keep Sensitive Data Safe and Private',
-      description: 'Learn how to keep your important data safe and private'
-    },
-    {
-      id: 5,
-      title: 'Manage Your Pivotal Cloud Foundry App\'s Using Apigee Edge',
-      description: 'Introductory course for Pivotal Cloud Foundry App'
-    }
-  ];
+  private _courses: BehaviorSubject<Course[] | null> = new BehaviorSubject(null);
 
-
-  //Returns all the courses for the user
-  public getAllCourses() : Course[]{
-    return this.coursesDummy;
+  /**
+     * Getter for courses
+     */
+  get courses$(): Observable<Course[]>
+  {
+      return this._courses.asObservable();
   }
 
-  public getCourse(id: number): Course{
-    return this.coursesDummy[id];
+  /**
+     * Get courses
+     */
+  getCourses(): Observable<Course[]>
+  {
+    console.log('called from coursesServices');
+      return this._httpClient.get<Course[]>('api/apps/courses/user').pipe(
+          tap((response: any) => {
+              this._courses.next(response);
+          })
+      );
   }
+
+  constructor(private _httpClient: HttpClient){}
 }

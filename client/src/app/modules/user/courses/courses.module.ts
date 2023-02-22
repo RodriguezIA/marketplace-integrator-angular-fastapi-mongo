@@ -13,7 +13,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { FuseFindByKeyPipeModule } from '@fuse/pipes/find-by-key';
 import { MatTabsModule } from '@angular/material/tabs';
 
-import { CoursesResolver } from './resolvers/courses.resolver';
+import { CoursesResolver, CourseResolver } from './resolvers/courses.resolver';
 import { CourseComponent } from './components/course/course.component';
 import { CoursesComponent } from './components/courses/courses.component';
 import { CoursesOutletComponent } from './components/outlet/outlet.component';
@@ -36,7 +36,9 @@ const routes: Route[] = [
             {
                 path: ':id',
                 component: CourseComponent,
-                resolve: {},
+                resolve: {
+                    course: CourseResolver
+                },
             },
         ],
     },

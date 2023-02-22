@@ -1,13 +1,15 @@
+import { demoCourseSteps } from './../academy/data';
 import { Injectable } from '@angular/core';
 import { cloneDeep } from 'lodash-es';
 import { FuseMockApiService } from '@fuse/lib/mock-api/mock-api.service';
-import { courses as coursesData } from 'app/mock-api/apps/courses/data';
+import { courses as coursesData, demoCourseSteps as demoCourseStepsData } from 'app/mock-api/apps/courses/data';
 
 @Injectable({
     providedIn: 'root',
 })
 export class CoursesApi {
     private _courses: any[] = coursesData;
+    private _demoCourseSteps: any[] = demoCourseStepsData;
 
     /**
      * Constructor
@@ -31,7 +33,6 @@ export class CoursesApi {
         this._fuseMockApiService.onGet('api/apps/courses/user').reply(() => {
             // Clone the courses
             const courses = cloneDeep(this._courses);
-            console.log('called on api');
             return [200, courses];
         });
 
@@ -46,9 +47,14 @@ export class CoursesApi {
 
                 // Clone the courses and steps
                 const courses = cloneDeep(this._courses);
+                const steps = cloneDeep(this._demoCourseSteps);
 
                 // Find the course and attach steps to it
-                const course = courses.find((item) => item.id === id);
+                const course = courses.find((item) => item.id == id);
+                if ( course )
+                {
+                    course.steps = steps;
+                }
 
                 return [200, course];
             });

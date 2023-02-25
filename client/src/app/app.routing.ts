@@ -4,9 +4,7 @@ import { NoAuthGuard } from 'app/core/auth/guards/noAuth.guard';
 import { LayoutComponent } from 'app/layout/layout.component';
 import { InitialDataResolver } from 'app/app.resolvers';
 
-// @formatter:off
-/* eslint-disable max-len */
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
+
 export const appRoutes: Route[] = [
 
     // Redirect empty path to '/example'
@@ -25,7 +23,7 @@ export const appRoutes: Route[] = [
         canMatch: [NoAuthGuard],
         component: LayoutComponent,
         data: {
-            layout: 'empty'
+            layout: 'modern'
         },
         children: [
             {path: 'confirmation-required', loadChildren: () => import('app/modules/auth/confirmation-required/confirmation-required.module').then(m => m.AuthConfirmationRequiredModule)},
@@ -64,9 +62,13 @@ export const appRoutes: Route[] = [
         resolve: {
             initialData: InitialDataResolver,
         },
+        data: {
+            layout: 'modern'
+        },
         children: [
             {path: 'example', loadChildren: () => import('app/modules/admin/example/example.module').then(m => m.ExampleModule)},
             {path: 'courses', loadChildren: () => import('app/modules/user/courses/courses.module').then(m => m.CoursesModule)},
+            {path: 'products', loadChildren: () => import('app/modules/user/ecommerce/ecommerce.module').then(m => m.ECommerceModule)},
             //Se debe cambiar de nombre la ruta
             {path: 'coursesTeacher', loadChildren: () => import('app/modules/teacher/courses/courses.module').then(m => m.CoursesModule)},
         ]

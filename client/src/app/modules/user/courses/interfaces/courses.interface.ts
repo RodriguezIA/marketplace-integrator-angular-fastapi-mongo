@@ -8,5 +8,6 @@ export interface Course {
         title?: string;
         subtitle?: string;
         content?: string;
-    }[];
+    }[],
+    previewSrc: string,
 }

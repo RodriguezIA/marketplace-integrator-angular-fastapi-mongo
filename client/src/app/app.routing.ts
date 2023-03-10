@@ -23,7 +23,7 @@ export const appRoutes: Route[] = [
         canMatch: [NoAuthGuard],
         component: LayoutComponent,
         data: {
-            layout: 'modern'
+            layout: 'empty'
         },
         children: [
             {path: 'confirmation-required', loadChildren: () => import('app/modules/auth/confirmation-required/confirmation-required.module').then(m => m.AuthConfirmationRequiredModule)},

@@ -3,36 +3,42 @@ export const courses = [
     id: 0,
     title: 'Basics of Angular',
     description: 'Introductory course for Angular and framework basics',
-    totalSteps: 11
+    totalSteps: 11,
+    previewSrc: 'assets/images/ui/courses-preview/default-preview.jpg'
   },
   {
     id: 1,
     title: 'Basics of TypeScript',
-    description: 'Beginner course for Typescript and its basics'
+    description: 'Beginner course for Typescript and its basics',
+    previewSrc: 'assets/images/ui/courses-preview/default-preview.jpg'
   },
   {
     id: 2,
     title: 'Android N: Quick Settings',
     description: 'Step by step guide for Android N: Quick Settings',
-    totalSteps: 3
+    totalSteps: 3,
+    previewSrc: 'assets/images/ui/courses-preview/default-preview.jpg'
   },
   {
     id: 3,
     title: 'Build an App for the Google Assistant with Firebase',
     description: 'Dive deep into Google Assistant apps using Firebase',
-    totalSteps: 1
+    totalSteps: 1,
+    previewSrc: 'assets/images/ui/courses-preview/default-preview.jpg'
   },
   {
     id: 4,
     title: 'Keep Sensitive Data Safe and Private',
     description: 'Learn how to keep your important data safe and private',
-    totalSteps: 5
+    totalSteps: 5,
+    previewSrc: 'assets/images/ui/courses-preview/default-preview.jpg'
   },
   {
     id: 5,
     title: 'Manage Your Pivotal Cloud Foundry App\'s Using Apigee Edge',
     description: 'Introductory course for Pivotal Cloud Foundry App',
-    totalSteps: 3
+    totalSteps: 3,
+    previewSrc: 'assets/images/ui/courses-preview/default-preview.jpg'
   }
 ];
 

@@ -1,12 +1,67 @@
-<div class="flex flex-auto p-6 sm:p-10">
-
+<div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto" cdkScrollable>
     <!-- Main -->
-    <div class="w-full sm:max-w-none rounded-2xl shadow overflow-hidden bg-card p-2">
-        <div class="flex sm:flex-row flex-col">
-            <div class="basis-1/3 bg-accent">oli2</div>
-            <div class="basis-2/3 bg-primary">oli</div>            
+    <div class="flex flex-auto p-6 sm:p-10">
+        <div class="flex flex-col flex-auto w-full max-w-xs sm:max-w-5xl mx-auto ">
+            <!-- Filters -->
+            <div class="flex flex-col sm:flex-row items-center justify-center w-full max-w-xs sm:max-w-none">
+                <mat-form-field class="w-full sm:w-72 mt-4 sm:mt-0 sm:ml-4" [subscriptSizing]="'dynamic'">
+                    <mat-icon matPrefix class="icon-size-5" [svgIcon]="'heroicons_solid:search'"></mat-icon>
+                    <input (input)="filterByQuery(query.value)" placeholder="Buscar por título o descripción" matInput
+                        #query />
+                </mat-form-field>
+            </div>
+            <!-- Courses -->
+            <ng-container *ngIf="this.filteredCourses.length; else noCourses">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 sm:mt-10">
+                    <ng-container *ngFor="
+                            let course of filteredCourses;
+                            trackBy: trackByFn
+                        ">
+                        <!-- Course -->
+                        <div class="flex flex-col shadow rounded-2xl overflow-hidden bg-card">
+                            <div class="flex flex-col p-6">
+                                <!-- Course title & description -->
+                                <div class="mt-4 text-lg font-medium">
+                                    {{ course.title }}
+                                </div>
+                                <div class="mt-0.5 line-clamp-2 text-secondary">
+                                    {{ course.description }}
+                                </div>
+                                <div class="w-12 h-1 my-6 border-t-2"></div>
+                            </div>
+                            <!-- Preview -->
+                            <div class="flex flex-col w-full mt-auto">
+                                <img src="{{course.previewSrc}}"
+                                alt="{{course.title}}"/>
+                            </div>
+                            <!-- Footer -->
+                            <div class="flex flex-col w-full mt-auto">
+                                <!-- Course launch button -->
+                                <div class="px-6 py-4 text-right bg-gray-50 dark:bg-transparent">
+                                    <a mat-stroked-button [routerLink]="[course.id]">
+                                        <span class="inline-flex items-center">
+                                            <span>Editar</span>
+                                            <mat-icon class="ml-1.5 icon-size-5" [svgIcon]="
+                                                    'heroicons_solid:arrow-sm-right'
+                                                "></mat-icon>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </ng-container>
+
+            <!-- No courses -->
+            <ng-template #noCourses>
+                <div class="flex flex-auto flex-col items-center justify-center bg-gray-100 dark:bg-transparent">
+                    <mat-icon class="icon-size-24" [svgIcon]="'heroicons_outline:document-search'"></mat-icon>
+                    <div class="mt-6 text-2xl font-semibold tracking-tight text-secondary">
+                        No se encontraron cursos
+                    </div>
+                </div>
+            </ng-template>
         </div>
     </div>
-
 </div>
-

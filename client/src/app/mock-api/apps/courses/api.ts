@@ -58,5 +58,37 @@ export class CoursesApi {
 
                 return [200, course];
             });
+
+        // -----------------------------------------------------------------------------------------------------
+        // @ Courses Teacher- GET
+        // -----------------------------------------------------------------------------------------------------
+        this._fuseMockApiService.onGet('api/apps/courses/teacher').reply(() => {
+            // Clone the courses
+            const courses = cloneDeep(this._courses);
+            return [200, courses];
+        });
+
+        // -----------------------------------------------------------------------------------------------------
+        // @ Course Teacher- GET
+        // -----------------------------------------------------------------------------------------------------
+        this._fuseMockApiService
+            .onGet('api/apps/courses/teacher/course')
+            .reply(({ request }) => {
+                // Get the id from the params
+                const id = request.params.get('id');
+
+                // Clone the courses and steps
+                const courses = cloneDeep(this._courses);
+                const steps = cloneDeep(this._demoCourseSteps);
+
+                // Find the course and attach steps to it
+                const course = courses.find((item) => item.id == id);
+                if ( course )
+                {
+                    course.steps = steps;
+                }
+
+                return [200, course];
+            });    
     }
 }

@@ -1,10 +1,7 @@
 from fastapi import FastAPI
-from .routes.products import products_main
+from .routes.user import user
+from .docs import tags_metadata
 
 app = FastAPI()
 
-@app.get("/")
-def root_app():
-    return {"welcome to root endpoint in server side test"}
-
-app.include_router(products_main.router)
+app.include_router(user, prefix='/user')

@@ -3,12 +3,12 @@ import { AuthGuard } from 'app/core/auth/guards/auth.guard';
 import { NoAuthGuard } from 'app/core/auth/guards/noAuth.guard';
 import { LayoutComponent } from 'app/layout/layout.component';
 import { InitialDataResolver } from 'app/app.resolvers';
+import { LandingHomeModule } from './modules/landing/home/home.module';
 
 
 export const appRoutes: Route[] = [
-
     // Redirect empty path to '/example'
-    {path: '', pathMatch : 'full', redirectTo: 'example'},
+    {path: '', pathMatch : 'full', redirectTo: 'home'},
 
     // Redirect signed-in user to the '/example'
     //
@@ -16,6 +16,19 @@ export const appRoutes: Route[] = [
     // path. Below is another redirection for that path to redirect the user to the desired
     // location. This is a small convenience to keep all main routes together here on this file.
     {path: 'signed-in-redirect', pathMatch : 'full', redirectTo: 'example'},
+
+    // Landing routes
+    {
+        path: '',
+        canMatch: [NoAuthGuard],
+        component: LayoutComponent,
+        data: {
+            layout: 'empty'
+        },
+        children: [
+            {path: 'home', loadChildren: () => import('app/modules/landing/home/home.module').then(m => m.LandingHomeModule)},
+        ]
+    },
 
     // Auth routes for guests
     {
@@ -44,16 +57,6 @@ export const appRoutes: Route[] = [
             {path: 'unlock-session', loadChildren: () => import('app/modules/auth/unlock-session/unlock-session.module').then(m => m.AuthUnlockSessionModule)}
         ]
     },
-
-    // Landing routes
-    {
-        path: '',
-        component: LayoutComponent,
-        children: [
-            {path: 'home', loadChildren: () => import('app/modules/landing/home/home.module').then(m => m.LandingHomeModule)},
-        ]
-    },
-
     // Admin routes
     {
         path: '',

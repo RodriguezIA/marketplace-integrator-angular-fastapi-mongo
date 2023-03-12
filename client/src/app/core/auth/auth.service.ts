@@ -5,18 +5,10 @@ import { AuthUtils } from 'app/core/auth/auth.utils';
 import { UserService } from 'app/core/user/user.service';
 
 @Injectable()
-export class AuthService
-{
+export class AuthService{
     private _authenticated: boolean = false;
 
-    /**
-     * Constructor
-     */
-    constructor(
-        private _httpClient: HttpClient,
-        private _userService: UserService
-    )
-    {
+    constructor( private _httpClient: HttpClient, private _userService: UserService){
     }
 
     // -----------------------------------------------------------------------------------------------------

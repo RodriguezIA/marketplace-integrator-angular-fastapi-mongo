@@ -4,6 +4,7 @@ import { NoAuthGuard } from 'app/core/auth/guards/noAuth.guard';
 import { LayoutComponent } from 'app/layout/layout.component';
 import { InitialDataResolver } from 'app/app.resolvers';
 import { LandingHomeModule } from './modules/landing/home/home.module';
+import { ErrorComponent } from './shared/error/error.component';
 
 
 export const appRoutes: Route[] = [
@@ -76,4 +77,7 @@ export const appRoutes: Route[] = [
             {path: 'coursesTeacher', loadChildren: () => import('app/modules/teacher/courses/courses.module').then(m => m.CoursesModule)},
         ]
     },
+    {
+        path: '**', component: ErrorComponent
+    }
 ];

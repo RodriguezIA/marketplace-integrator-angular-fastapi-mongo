@@ -5,12 +5,8 @@ import { Component, ViewEncapsulation } from '@angular/core';
     templateUrl  : './home.component.html',
     encapsulation: ViewEncapsulation.None
 })
-export class LandingHomeComponent
-{
-    /**
-     * Constructor
-     */
-    constructor()
-    {
+export class LandingHomeComponent{
+    navbarOpen: boolean = false
+    constructor(){
     }
 }

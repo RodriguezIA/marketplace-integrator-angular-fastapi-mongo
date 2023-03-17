@@ -25,26 +25,5 @@ export const ecommerceRoutes: Route[] = [
                 }
             }
         ]
-        /*children : [
-            {
-                path     : '',
-                component: ContactsListComponent,
-                resolve  : {
-                    tasks    : ContactsResolver,
-                    countries: ContactsCountriesResolver
-                },
-                children : [
-                    {
-                        path         : ':id',
-                        component    : ContactsDetailsComponent,
-                        resolve      : {
-                            task     : ContactsContactResolver,
-                            countries: ContactsCountriesResolver
-                        },
-                        canDeactivate: [CanDeactivateContactsDetails]
-                    }
-                ]
-            }
-        ]*/
     }
 ];

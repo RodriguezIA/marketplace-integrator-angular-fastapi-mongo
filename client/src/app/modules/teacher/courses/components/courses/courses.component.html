@@ -3,12 +3,22 @@
     <div class="flex flex-auto p-6 sm:p-10">
         <div class="flex flex-col flex-auto w-full max-w-xs sm:max-w-5xl mx-auto ">
             <!-- Filters -->
-            <div class="flex flex-col sm:flex-row items-center justify-center w-full max-w-xs sm:max-w-none">
-                <mat-form-field class="w-full sm:w-72 mt-4 sm:mt-0 sm:ml-4" [subscriptSizing]="'dynamic'">
+            <div class="flex flex-col sm:flex-row items-center justify-between w-full max-w-xs sm:max-w-none">
+                <mat-form-field class="sm:w-72 mt-4 sm:mt-0 sm:ml-4" [subscriptSizing]="'dynamic'">
                     <mat-icon matPrefix class="icon-size-5" [svgIcon]="'heroicons_solid:search'"></mat-icon>
                     <input (input)="filterByQuery(query.value)" placeholder="Buscar por título o descripción" matInput
                         #query />
                 </mat-form-field>
+                <div class="w-full sm:w-36">
+                    <a mat-stroked-button routerLink="new">
+                        <span class="inline-flex items-center">
+                            <span>Crear curso</span>
+                            <mat-icon class="ml-1.5 icon-size-5" [svgIcon]="
+                                    'heroicons_solid:plus'
+                                "></mat-icon>
+                        </span>
+                    </a>
+                </div>
             </div>
             <!-- Courses -->
             <ng-container *ngIf="this.filteredCourses.length; else noCourses">
@@ -31,8 +41,7 @@
                             </div>
                             <!-- Preview -->
                             <div class="flex flex-col w-full mt-auto">
-                                <img src="{{course.previewSrc}}"
-                                alt="{{course.title}}"/>
+                                <img src="{{course.previewSrc}}" alt="{{course.title}}" />
                             </div>
                             <!-- Footer -->
                             <div class="flex flex-col w-full mt-auto">

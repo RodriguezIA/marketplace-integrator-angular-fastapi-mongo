@@ -12,11 +12,13 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FuseFindByKeyPipeModule } from '@fuse/pipes/find-by-key';
 import { MatTabsModule } from '@angular/material/tabs';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { FuseConfirmationModule } from '@fuse/services/confirmation';
 
 import { CourseComponent } from './components/course/course.component';
 import { OutletComponent } from './components/outlet/outlet.component';
 import { CoursesComponent } from './components/courses/courses.component';
-import { CourseResolver, CoursesResolver } from './resolvers/courses.resolver';
+import { CourseResolver, CoursesResolver, CourseNewResolver } from './resolvers/courses.resolver';
 import { SharedModule } from 'app/shared/shared.module';
 
 const routes: Route[] = [
@@ -39,6 +41,13 @@ const routes: Route[] = [
                     course: CourseResolver,
                 },
             },
+            {
+                path: 'new',
+                component: CourseComponent,
+                resolve: {
+                    course: CourseNewResolver
+                }
+            }
         ],
     },
 ];
@@ -60,6 +69,8 @@ const routes: Route[] = [
         MatTooltipModule,
         MatTabsModule,
         SharedModule,
+        AngularEditorModule,
+        FuseConfirmationModule
     ],
 })
 export class CoursesModule {}

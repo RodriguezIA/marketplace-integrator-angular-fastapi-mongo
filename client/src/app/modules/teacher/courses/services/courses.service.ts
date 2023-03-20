@@ -66,5 +66,9 @@ export class CoursesService {
       );
   }
 
+  createCourse() : Observable<Course>{
+    return this.getCourseById('new');
+  }
+
   constructor(private _httpClient: HttpClient){}
 }

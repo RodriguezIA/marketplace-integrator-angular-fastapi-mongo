@@ -39,6 +39,13 @@ export const courses = [
     description: 'Introductory course for Pivotal Cloud Foundry App',
     totalSteps: 3,
     previewSrc: 'assets/images/ui/courses-preview/default-preview.jpg'
+  },
+  {
+    id: 'new',
+    title: 'Nuevo curso',
+    description: 'Descripcion del curso',
+    totalSteps: 0,
+    previewSrc: 'assets/images/ui/courses-preview/default-preview.jpg'
   }
 ];
 

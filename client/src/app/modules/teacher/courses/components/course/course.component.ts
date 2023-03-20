@@ -5,6 +5,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { CoursesService } from '../../services/courses.service';
 import { Course } from 'app/modules/user/courses/interfaces/courses.interface';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
     selector: 'app-course',
@@ -18,13 +19,45 @@ export class CourseComponent implements OnInit, OnDestroy {
     public drawerMode: 'over' | 'side' = 'side';
     public drawerOpened: boolean = true;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
+    public editorConfig : AngularEditorConfig;
 
+    public addModule(): void {
+        let newCourse = {
+            order: this.course.steps.length,
+            title: 'Nuevo módulo',
+            subtitle: 'Descripción del curso'
+        }
+        this.course.steps.push(newCourse);
+        this.course.totalSteps = this.course.steps.length;
+        this.goToStep(this.course.totalSteps - 1);
+    }
+
+    public deleteCourse(): void{
+        this.course.steps.splice(this.currentStep, 1);
+        this.course.totalSteps = this.course.steps.length;
+        this.reorder();
+        this.goToPreviousStep();
+    }
+
+    private reorder(): void{
+        for (let i = 0; i < this.course.steps.length; i++){
+            this.course.steps[i].order = i;
+        }
+    }
+
+    public onchangeTitle(event) : void {
+        this.course.steps[this.currentStep].title = event.target.value;
+    }
+
+    public onchangeDescripcion(event) : void {
+        this.course.steps[this.currentStep].subtitle = event.target.value;
+    }
 
     /**
- * Go to given step
- *
- * @param step
- */
+     * Go to given step
+     *
+     * @param step
+    */
     goToStep(step: number): void {
         // Set the current step
         this.currentStep = step;
@@ -145,6 +178,27 @@ export class CourseComponent implements OnInit, OnDestroy {
                 // Mark for check
                 this._changeDetectorRef.markForCheck();
             });
+
+        this.editorConfig = {
+            editable: true,
+              spellcheck: false,
+              height: '60vh',
+              minHeight: '0',
+              maxHeight: 'auto',
+              width: 'auto',
+              minWidth: '0',
+              translate: 'no',
+              enableToolbar: true,
+              showToolbar: true,
+              placeholder: 'Enter text here...',
+              defaultFontSize: '1.2857143em',
+            sanitize: true,
+            toolbarPosition: 'top',
+            toolbarHiddenButtons: [
+              ['fontName'],
+              ['insertImage', 'insertVideo']
+            ]
+        };
     }
 
     constructor(

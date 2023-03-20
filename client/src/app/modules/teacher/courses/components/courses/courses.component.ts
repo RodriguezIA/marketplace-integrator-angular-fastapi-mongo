@@ -9,6 +9,7 @@ import { Course } from 'app/modules/user/courses/interfaces/courses.interface';
     styleUrls: ['./courses.component.scss'],
 })
 export class CoursesComponent implements OnInit, OnDestroy {
+    
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
     public courses: Course[] = [];

@@ -7,12 +7,12 @@
             </div>
 
             <!-- Title -->
-            <div class="mt-8 text-4xl font-extrabold tracking-tight leading-tight">Sign up</div>
+            <div class="mt-8 text-4xl font-extrabold tracking-tight leading-tight">Iniciar Sesion</div>
             <div class="flex items-baseline mt-0.5 font-medium">
-                <div>Already have an account?</div>
+                <div>Ya tienes una cuenta?</div>
                 <a
                     class="ml-1 text-primary-500 hover:underline"
-                    [routerLink]="['/sign-in']">Sign in
+                    [routerLink]="['/sign-in']">Inicia Sesion
                 </a>
             </div>
 
@@ -35,34 +35,34 @@
 
                 <!-- Name field -->
                 <mat-form-field class="w-full">
-                    <mat-label>Full name</mat-label>
+                    <mat-label>Nombre completo</mat-label>
                     <input
                         id="name"
                         matInput
                         [formControlName]="'name'">
                     <mat-error *ngIf="signUpForm.get('name').hasError('required')">
-                        Full name is required
+                        El nombre completo es requerido
                     </mat-error>
                 </mat-form-field>
 
                 <!-- Email field -->
                 <mat-form-field class="w-full">
-                    <mat-label>Email address</mat-label>
+                    <mat-label>Correo electronico</mat-label>
                     <input
                         id="email"
                         matInput
                         [formControlName]="'email'">
                     <mat-error *ngIf="signUpForm.get('email').hasError('required')">
-                        Email address is required
+                        el Correo electronico  es requerido
                     </mat-error>
                     <mat-error *ngIf="signUpForm.get('email').hasError('email')">
-                        Please enter a valid email address
+                        Por favor ingresa un Correo electronico valido
                     </mat-error>
                 </mat-form-field>
 
                 <!-- Password field -->
                 <mat-form-field class="w-full">
-                    <mat-label>Password</mat-label>
+                    <mat-label>Contraseña</mat-label>
                     <input
                         id="password"
                         matInput
@@ -84,18 +84,10 @@
                             [svgIcon]="'heroicons_solid:eye-off'"></mat-icon>
                     </button>
                     <mat-error>
-                        Password is required
+                        La Contraseña es requerida
                     </mat-error>
                 </mat-form-field>
 
-                <!-- Company field -->
-                <mat-form-field class="w-full">
-                    <mat-label>Company</mat-label>
-                    <input
-                        id="company-confirm"
-                        matInput
-                        [formControlName]="'company'">
-                </mat-form-field>
 
                 <!-- ToS and PP -->
                 <div class="inline-flex items-end w-full mt-1.5">
@@ -103,15 +95,15 @@
                         class="-ml-2"
                         [color]="'primary'"
                         [formControlName]="'agreements'">
-                        <span>I agree with</span>
+                        <span>Yo acepto</span>
                         <a
                             class="ml-1 text-primary-500 hover:underline"
-                            [routerLink]="['./']">Terms
+                            [routerLink]="['./']">Terminos y condiciones
                         </a>
-                        <span>and</span>
+                        <span>y</span>
                         <a
                             class="ml-1 text-primary-500 hover:underline"
-                            [routerLink]="['./']">Privacy Policy
+                            [routerLink]="['./']">Politicas de privacidad
                         </a>
                     </mat-checkbox>
                 </div>
@@ -124,7 +116,7 @@
                     [disabled]="signUpForm.disabled"
                     (click)="signUp()">
                     <span *ngIf="!signUpForm.disabled">
-                        Create your free account
+                        Crea tu cuanta  gratis
                     </span>
                     <mat-progress-spinner
                         *ngIf="signUpForm.disabled"

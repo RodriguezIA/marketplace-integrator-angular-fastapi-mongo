@@ -47,7 +47,6 @@ export class AuthSignUpComponent implements OnInit
                 name      : ['', Validators.required],
                 email     : ['', [Validators.required, Validators.email]],
                 password  : ['', Validators.required],
-                company   : [''],
                 agreements: ['', Validators.requiredTrue]
             }
         );
@@ -62,18 +61,6 @@ export class AuthSignUpComponent implements OnInit
      */
     signUp(): void
     {
-        // Do nothing if the form is invalid
-        if ( this.signUpForm.invalid )
-        {
-            return;
-        }
-
-        // Disable the form
-        this.signUpForm.disable();
-
-        // Hide the alert
-        this.showAlert = false;
-
         // Sign up
         this._authService.signUp(this.signUpForm.value)
             .subscribe(
@@ -81,6 +68,7 @@ export class AuthSignUpComponent implements OnInit
 
                     // Navigate to the confirmation required page
                     this._router.navigateByUrl('/confirmation-required');
+                    console.log(response)
                 },
                 (response) => {
 

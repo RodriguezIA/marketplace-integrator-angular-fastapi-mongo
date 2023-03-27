@@ -8,6 +8,8 @@ const generatePalette = require(path.resolve(__dirname, ('src/@fuse/tailwind/uti
  *
  * Uses the generatePalette helper method to generate
  * Tailwind-like color palettes automatically
+ *
+ * esto es una prueba para los test de nvim
  */
 const customPalettes = {
     brand: generatePalette('#2196F3')

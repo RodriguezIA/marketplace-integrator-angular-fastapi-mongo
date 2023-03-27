@@ -60,17 +60,18 @@ export class AuthSignInComponent implements OnInit
      */
     signIn(): void
     {
-        // Return if the form is invalid
-        if ( this.signInForm.invalid )
-        {
-            return;
-        }
+        // console.log(this.signInForm.value)
+        // // Return if the form is invalid
+        // if ( this.signInForm.invalid )
+        // {
+        //     return;
+        // }
 
-        // Disable the form
-        this.signInForm.disable();
+        // // Disable the form
+        // this.signInForm.disable();
 
-        // Hide the alert
-        this.showAlert = false;
+        // // Hide the alert
+        // this.showAlert = false;
 
         // Sign in
         this._authService.signIn(this.signInForm.value)
@@ -88,6 +89,8 @@ export class AuthSignInComponent implements OnInit
 
                 },
                 (response) => {
+
+                    console.log(response)
 
                     // Re-enable the form
                     this.signInForm.enable();

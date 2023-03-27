@@ -4,9 +4,19 @@ import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
 import { AuthUtils } from 'app/core/auth/auth.utils';
 import { UserService } from 'app/core/user/user.service';
 
+interface User {
+    id?: string,
+    name: string,
+    email: string,
+    password:  string,
+    role?: string
+}
+
 @Injectable()
 export class AuthService{
+
     private _authenticated: boolean = false;
+    public baseUrl: string = ' http://127.0.0.1:8000'
 
     constructor( private _httpClient: HttpClient, private _userService: UserService){
     }
@@ -59,13 +69,14 @@ export class AuthService{
      */
     signIn(credentials: { email: string; password: string }): Observable<any>
     {
+        console.log(credentials)
         // Throw error, if the user is already logged in
         if ( this._authenticated )
         {
             return throwError('User is already logged in.');
         }
 
-        return this._httpClient.post('api/auth/sign-in', credentials).pipe(
+        return this._httpClient.post(`${this.baseUrl}/user/login`, credentials).pipe(
             switchMap((response: any) => {
 
                 // Store the access token in the local storage
@@ -143,9 +154,16 @@ export class AuthService{
      *
      * @param user
      */
-    signUp(user: { name: string; email: string; password: string; company: string }): Observable<any>
+    signUp(user: { name: string; email: string; password: string;  role: string  }): Observable<any>
     {
-        return this._httpClient.post('api/auth/sign-up', user);
+        let newUser: User= {
+            name: user.name,
+            email: user.email,
+            password: user.password,
+            role: 'user'
+        }
+        console.log(newUser)
+        return this._httpClient.post(`${this.baseUrl}/user/`, newUser);
     }
 
     /**

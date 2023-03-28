@@ -76,8 +76,8 @@ export const appRoutes: Route[] = [
         children: [
             {path: 'courses', loadChildren: () => import('app/modules/user/courses/courses.module').then(m => m.CoursesModule)},
             {path: 'products', loadChildren: () => import('app/modules/user/ecommerce/ecommerce.module').then(m => m.ECommerceModule)},
-            //Se debe cambiar de nombre la ruta
-            {path: 'coursesTeacher', loadChildren: () => import('app/modules/teacher/courses/courses.module').then(m => m.CoursesModule)},
+            //Se debe validar el rol del usuario
+            {path: 'admonCourses', loadChildren: () => import('app/modules/teacher/courses/courses.module').then(m => m.CoursesModule)},
         ]
     },
     {

@@ -32,6 +32,10 @@ export class CourseComponent implements OnInit, OnDestroy {
         this.goToStep(this.course.totalSteps - 1);
     }
 
+    public guardarCurso(): void {
+        
+    }
+
     public deleteCourse(): void{
         this.course.steps.splice(this.currentStep, 1);
         this.course.totalSteps = this.course.steps.length;
